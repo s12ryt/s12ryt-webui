@@ -1,0 +1,13 @@
+# 本機與 GitHub 共用忽略規則
+
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
+build/
+out/
+coverage/
+.next/
+.env
+.env.*
+*.log
