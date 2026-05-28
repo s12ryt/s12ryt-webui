@@ -4,7 +4,7 @@
 
 ## 使用方式
 
-1. 先閱讀本文件了解整體定位與 12 套方案。
+1. 若由 AI、agent 或新接手開發者閱讀，先看 `AI閱讀入口.md`，依任務只載入必要文件；人類快速瀏覽可從本文件開始。
 2. 到 `共用規格/` 讀取跨方案規則：
    - `方案選擇矩陣.md`：用產品類型、資訊密度、信任感、視覺強度快速選方案。
    - `細化檢查清單.md`：實作前、中、後檢查 layout、token、元件狀態、RWD、a11y。
@@ -18,8 +18,9 @@
    - `design-system.md`：色彩、字體、間距、layout、狀態、動效與禁用規則。
    - `components.md`：基礎元件、情境元件、狀態規則與內容寫法。
    - `pages.md`：頁面模板、資訊架構、主要流程與 AI 提示模板。
-6. 若需求需要混合多種方向，必須先指定主方案，只借用其他方案的單一元素，且不能混用色彩、圓角、陰影、排版密度。
-7. 新增或大幅修改方案時，使用 `共用規格/方案品質門檻.md` 做 PR review；未達最低合格門檻時不要直接交給 AI 實作。
+6. 需要具體元件時，讀 `小組件/README.md` 與對應小組件文件；小組件只提供結構、狀態與互動規則，視覺 token 仍以唯一主方案為準。
+7. 若需求需要混合多種方向，必須先指定主方案，只借用其他方案的單一元素，且不能混用色彩、圓角、陰影、排版密度。
+8. 新增或大幅修改方案時，使用 `共用規格/方案品質門檻.md` 做 PR review；未達最低合格門檻時不要直接交給 AI 實作。
 
 ## 共通 WebUI 原則
 
@@ -41,7 +42,7 @@
 - Styling：Tailwind CSS 或同等 utility-first design token。
 - Icons：Lucide / Heroicons 擇一，不混用多套 icon。
 - Charts：Recharts / ECharts 擇一，依資料量與互動需求決定。
-- Components：先建立 Button、Input、Card、Dialog、Tabs、Table、Toast、EmptyState、Skeleton、Tooltip。
+- Components：先參考 `小組件/` 的拆分規則，再建立 Button、Input、Card、Dialog、Tabs、Table、Toast、EmptyState、Skeleton、Tooltip。
 - Theme：把方案的 CSS token 映射為 `bg`、`surface`、`text`、`muted`、`primary`、`success`、`warning`、`danger`。
 
 ## 方案選擇速查
@@ -82,7 +83,9 @@
 
 ```text
 請使用「方案-XX」作為唯一主視覺方向，遵守該資料夾內 README.md、design-system.md、components.md、pages.md，以及共用規格/AI輸出契約.md。
+請先閱讀 AI閱讀入口.md，並只載入本次任務需要的方案與小組件文件。
 請先填寫或參考共用規格/AI實作交接卡.md，明確說明頁面範圍、主要任務、資料密度、必備狀態與禁用風格。
+若使用小組件，請列出小組件來源文件；小組件只提供結構與互動，所有色彩、圓角、陰影、字級與間距都必須套用主方案 design-system.md。
 請先輸出本頁資訊架構、使用的 design token、需要的元件與狀態，再輸出程式碼。
 不要混用其他方案的色彩、圓角、陰影與排版密度，除非我明確指定。
 不要使用 emoji 當正式 UI icon。

@@ -43,15 +43,15 @@ Issue 內容要求建立 WebUI 專案方向文件，讓 AI 後續知道介面要
 - PR #2 已合併到 main。
 - Issue #1 已自動關閉。
 
-## 2026-05-28
+## 2026-05-28：方案擴充與治理規格
 
 ### 使用者追加回饋
 
 使用者指出：「應該要給出更多方案並且更加的細化」。
 
-### 本次處理方向
+### 處理方向
 
-在已合併的 PR #2 基礎上，建立補強分支 `docs/expand-webui-directions`，將 WebUI 方向資料庫從 5 套方案擴充為 12 套方案，並新增跨方案共用規格與 AI 輸出契約。
+在已合併的 PR #2 基礎上，建立補強分支 `docs/expand-webui-directions`，將 WebUI 方向資料庫從 5 套方案擴充為 12 套方案，並新增跨方案共用規格、品質門檻與 AI 實作交接規則。
 
 ### 已新增共用規格
 
@@ -79,9 +79,52 @@ Issue 內容要求建立 WebUI 專案方向文件，讓 AI 後續知道介面要
 - 方案 04：補品牌 Landing 的轉換目標、hero、CTA、feature、social proof、pricing、waitlist、launch、case study、campaign 與表單狀態。
 - 方案 05：補資料監控的核心問題、KPI、chart、alert、incident timeline、filters、log analytics、refresh/stale data、partial failure 與 report view。
 
+### GitHub 狀態
+
+- PR #4：`https://github.com/s12ryt/s12ryt-webui/pull/4` 已建立並由使用者合併。
+- `main` 已包含 12 套方案與 5 個共用規格。
+
+## 2026-05-28：AI 閱讀與小組件拆分
+
+### 使用者追加回饋
+
+使用者要求：「請針對ai閱讀做一些優化,還有把一些小組件拆分出來放到一個資料夾裡面」。使用者合併 PR #4 後，又要求重開新的 PR。
+
+### 處理方向
+
+從已包含 PR #4 的 `origin/main` 建立新分支 `docs/ai-reading-components`。本次不改 12 套方案本體，而是補 AI 閱讀路徑、低上下文模式與跨方案小組件資料夾，降低 AI 閱讀成本並避免把所有方案塞入上下文造成風格混用。
+
+### 已新增 AI 閱讀入口
+
+- `AI閱讀入口.md`：
+  - 說明本 repo 是 WebUI 方向資料庫，不是實際 Web App。
+  - 定義快速了解專案、實作頁面、新增/大改方案、審查 PR 的閱讀順序。
+  - 定義低上下文模式：只讀必要文件，不讀所有 `方案-*`。
+  - 要求 AI 先確認唯一主方案，再輸出資訊架構、design token、元件清單、狀態、RWD、可及性，最後才輸出程式碼。
+  - 要求使用小組件時先取 `小組件/` 的共用結構，再套用主方案 token。
+
+### 已新增小組件資料夾
+
+- `小組件/README.md`：小組件使用原則、分類索引、AI 使用範本、共用狀態、命名建議與禁止事項。
+- `小組件/基礎元件.md`：Button、TextInput、Select、Checkbox、Radio、Switch、Card、Badge、Avatar、Divider、Tooltip。
+- `小組件/資料與狀態元件.md`：Table、List、MetricCard、ChartPanel、EmptyState、Skeleton、ErrorState、PermissionNotice、Toast/InlineAlert。
+- `小組件/導覽與浮層元件.md`：AppHeader、SideNav、Breadcrumbs、TabsNav、Dialog、Drawer、PopoverMenu、Tooltip。
+- `小組件/表單與操作元件.md`：FormField、FieldGroup、SearchInput、FilterBar、ActionBar/BulkActionBar、Pagination、Stepper、Confirm pattern。
+- `小組件/內容展示元件.md`：HeroSection、FeatureGrid、PricingCard、MediaCard、ArticleCard、Timeline、Callout/Highlight、QuoteBlock/Testimonial。
+
+### 已串接索引與契約
+
+- `README.md`：新增 `AI閱讀入口.md` 的使用方式，說明需要具體元件時讀 `小組件/`，並在 AI 實作提示中要求列出小組件來源與回套主方案 token。
+- `共用規格/AI輸出契約.md`：新增小組件來源欄位、AI 回答中的小組件套用方式，以及禁止把 `小組件/` 當成另一套視覺方案。
+- `共用規格/AI實作交接卡.md`：新增小組件來源、來源文件與套用方式欄位。
+- `agent/項目表.md`：新增 AI 閱讀入口與小組件資料夾索引。
+- `agent/deep_todos.md`：新增本次需求與待辦狀態。
+
 ### 注意事項
 
 - 後續實作 WebUI 必須先指定唯一主方案。
 - 若需要混合方案，只能借用單一元件或頁型概念，不可混用主色、狀態色、圓角、陰影與資訊密度。
+- `小組件/` 只定義結構、狀態與互動規則，不決定品牌色、圓角、陰影、字級、間距與資訊密度。
+- 若小組件文件與主方案文件衝突，以主方案 `design-system.md` 與 `components.md` 為準。
 - 不要把 emoji 當正式 UI icon。
 - 目前仍是文件型專案，尚未建立實際 app scaffold。

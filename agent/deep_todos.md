@@ -58,17 +58,43 @@
   - [x] 方案 05：補監控核心問題、KPI、chart、alert、incident、log analytics、refresh/stale data 規則。
 - [x] 更新 `agent/項目表.md`。
 - [x] 更新 `agent/memory.md`。
+- [x] 依 git-master 規則拆分多個原子提交。
+- [x] 推送 `docs/expand-webui-directions`。
+- [x] 建立補強 PR #4 到 `main`。
+- [x] PR #4 已合併。
+
+## 2026-05-28 補強需求：AI 閱讀優化與小組件拆分
+
+使用者回饋：`請針對ai閱讀做一些優化,還有把一些小組件拆分出來放到一個資料夾裡面`
+
+### 已完成
+
+- [x] 使用者合併 PR #4 後，重新從 `origin/main` 建立補強分支：`docs/ai-reading-components`。
+- [x] 新增 `AI閱讀入口.md`，提供 AI 最短閱讀路徑、低上下文模式、任務判斷表與回答前自檢。
+- [x] 新增 `小組件/` 資料夾，將跨方案常用元件拆成獨立文件：
+  - [x] `小組件/README.md`
+  - [x] `小組件/基礎元件.md`
+  - [x] `小組件/資料與狀態元件.md`
+  - [x] `小組件/導覽與浮層元件.md`
+  - [x] `小組件/表單與操作元件.md`
+  - [x] `小組件/內容展示元件.md`
+- [x] 更新 `README.md`，加入 AI 閱讀入口、小組件使用方式與 AI 提示。
+- [x] 更新 `共用規格/AI輸出契約.md`，要求列出小組件來源與套用方式。
+- [x] 更新 `共用規格/AI實作交接卡.md`，加入小組件來源與套用方式欄位。
+- [x] 更新 `agent/項目表.md`。
+- [x] 更新 `agent/memory.md`。
 
 ### 待辦
 
-- [ ] 檢查 git 差異與文件數量。
+- [ ] 檢查 git 差異與 Markdown 結構。
 - [ ] 依 git-master 規則拆分多個原子提交。
-- [ ] 推送 `docs/expand-webui-directions`。
-- [ ] 建立補強 PR 到 `main`。
+- [ ] 推送 `docs/ai-reading-components`。
+- [ ] 建立新的補強 PR 到 `main`。
 
 ## 後續建議
 
 1. 後續真正做 WebUI 前，先在 12 套方案中指定唯一主方案。
 2. 若需求跨多場景，先用 `共用規格/方案選擇矩陣.md` 決定主方案，再只借用其他方案的單一頁型或元件概念。
-3. 任何實作都應依 `共用規格/AI輸出契約.md`，先輸出資訊架構、design token、元件清單、狀態設計與 RWD 策略，再寫程式碼。
-4. 不要用 emoji 當正式 UI icon；需使用一致 SVG icon 系統。
+3. 任何實作都應依 `共用規格/AI輸出契約.md`，先輸出資訊架構、design token、小組件來源、元件清單、狀態設計與 RWD 策略，再寫程式碼。
+4. 若使用 `小組件/`，只能借用結構、狀態與互動規則；色彩、圓角、陰影、字級、間距與資訊密度仍回到唯一主方案。
+5. 不要用 emoji 當正式 UI icon；需使用一致 SVG icon 系統。
